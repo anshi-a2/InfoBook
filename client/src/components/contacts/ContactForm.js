@@ -19,7 +19,6 @@ const ContactForm = () => {
                 phone:'',
                 didProjects:'',
                 workingProjects:'',
-                dateOfJoining:''
             });
         }
     },[contactContext, current]);
@@ -30,11 +29,10 @@ const ContactForm = () => {
         email:'',
         phone:'',
         didProjects:'',
-        workingProjects:'',
-        dateOfJoining:''
+        workingProjects:''
     });
 
-    const {name, email, phone, didProjects, workingProjects, dateOfJoining} = contact;
+    const {name, email, phone, didProjects, workingProjects} = contact;
 
     
 
@@ -106,14 +104,6 @@ const ContactForm = () => {
                     onChange={onChange}
                 />
                 
-                <input
-                    className="form-control m-2" 
-                    type="date" 
-                    placeholder="joining date" 
-                    name="dateOfJoining"
-                    value={dateOfJoining} 
-                    onChange={onChange}
-                />
 
                 <div>
                     <input type="submit" value={current.name ? 'Update Contact' : 'Add Contact'} className="btn btn-dark btn-block m-2"></input>

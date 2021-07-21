@@ -12,7 +12,7 @@ const {check,validationResult} = require('express-validator');
 //@route : get /api/contact
 router.get('/',auth,async(req,res)=>{
     try{
-        const contacts= await Contact.findOne({user:req.user.id}).sort({date:-1});
+        const contacts= await Contact.find({user:req.user.id}).sort({date:-1});
         res.json(contacts);
     }
     catch(err){
@@ -34,7 +34,7 @@ router.post('/',
             return res.status(400).json({errors: errors.array()})
         }
 
-        const{name, email, phone, didProjects, workingProjects, dateOfWorking} = req.body;
+        const{name, email, phone, didProjects, workingProjects} = req.body;
 
         try{
             const newContact = new Contact({
@@ -43,7 +43,6 @@ router.post('/',
                 phone,
                 didProjects,
                 workingProjects,
-                dateOfWorking,
                 user:req.user.id
             });
             const contact = await newContact.save();
@@ -60,14 +59,13 @@ router.post('/',
 //@desc: update contact 
 //@route : put /api/contact/:id
 router.put('/:id',auth,async(req,res)=>{
-    const {name,email,phone,didProjects,workingProjects,dateOfWorking}= req.body;
+    const {name,email,phone,didProjects,workingProjects}= req.body;
     const contactUpdate = {};
     if(name) contactUpdate.name = name;
     if(email) contactUpdate.email = email;
     if(phone) contactUpdate.phone = phone;
     if(didProjects) contactUpdate.didProjects = didProjects;
     if(workingProjects) contactUpdate.workingProjects = workingProjects;
-    if(dateOfWorking) contactUpdate.dateOfWorking = dateOfWorking;
 
     try {
         let contact = await Contact.findById(req.params.id);

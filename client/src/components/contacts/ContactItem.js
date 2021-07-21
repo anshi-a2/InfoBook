@@ -7,7 +7,7 @@ const ContactItem = ({contact}) => {
     const contactContext = useContext(ContactContext);
     const {deleteContact, setCurrent, clearCurrent}= contactContext;
 
-    const {_id, name, email, phone, didProjects, workingProjects, dateOfJoining} = contact;
+    const {_id, name, email, phone, didProjects, workingProjects} = contact;
 
     const onEdit = () =>{
         setCurrent(contact);
@@ -41,9 +41,7 @@ const ContactItem = ({contact}) => {
                     <i className="fas fa-book"></i>{' '}{didProjects}
                 </li>)}
 
-                {dateOfJoining && (<li>
-                    <i className="fa fa-calendar"></i>{' '}{dateOfJoining}
-                </li>)}
+                
 
             </ul>
 

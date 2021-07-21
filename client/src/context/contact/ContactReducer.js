@@ -24,14 +24,14 @@ const ContactReducer = (state, action ) => {
         case ADD_CONTACT:
             return {
                 ...state,
-                contacts:[action.payload, ...state.contacts],  //whenadding action in startting contact wil be added in front(beg.)
+                contacts:[ action.payload,...state.contacts],  //when adding action in startting contact wil be added in front(beg.)
                 loading:false
             };
 
         case UPDATE_CONTACT:
             return{
                 ...state,
-                contacts:state.contacts.map(contact=>contact.id===action.payload.id?action.payload:contact),
+                contacts:state.contacts.map(contact=>contact._id===action.payload._id?action.payload:contact),
                 loading:false
             };
 
